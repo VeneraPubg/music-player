@@ -108,6 +108,7 @@ loadTrack(currentIndex)
 
 let isPlaying = false
 let isShuffle = false
+let repeatMod = 0;
 
 playBtn.addEventListener('click', () => {
     if(isPlaying) {
@@ -164,4 +165,22 @@ audio.addEventListener('timeupdate', () => {
     const percent = 
     (audio.currentTime / audio.duration) * 100
     progressEl.value = percent || 0;
+})
+
+audio.addEventListener("ended", () => {
+    if(repeatMod === 1) {
+        audio.play();
+    } else {
+        nextBtn.click();
+    }
+})
+
+repeatBtn.addEventListener('click', () => {
+    if(repeatMod === 0) {
+        repeatMod = 1
+        repeatBtn.textContent = '🔂'
+    } else {
+        repeatMod = 0
+        repeatBtn.textContent = '🔁'
+    }
 })
