@@ -61,7 +61,7 @@ const nextBtn = document.getElementById('next')
 const shuffleBtn = document.getElementById('shuffle')
 /* Кнопка повтор треков */
 const repeatBtn = document.getElementById('repeat')
-const isPlaying = false
+
 
 function loadTrack(index) {
     /* Получили нужный трек */
@@ -89,6 +89,7 @@ function loadTrack(index) {
     }
     img.src = imgPath
 
+    updateActiveTrack();
 }
 
 function updateActiveTrack() {
@@ -104,3 +105,63 @@ function updateActiveTrack() {
 
 createTrackList()
 loadTrack(currentIndex)
+
+let isPlaying = false
+let isShuffle = false
+
+playBtn.addEventListener('click', () => {
+    if(isPlaying) {
+        audio.pause();
+        playBtn.textContent = "▶️"
+    } else {
+        audio.play();
+        playBtn.textContent = "⏸️"
+    }
+    isPlaying = !isPlaying;
+})
+
+prevBtn.addEventListener('click', () => {
+    if (audio.currentTime > 3) {
+        audio.currentTime = 0;
+    } else {
+        currentIndex = 
+        (currentIndex - 1 + tracks.length) % tracks.length
+        loadTrack(currentIndex);
+    }
+    if (isPlaying){
+        audio.play()
+    }
+})
+
+nextBtn.addEventListener('click', () => {
+    if(isShuffle) {
+        currentIndex = Math.floor(Math.random() * tracks.length)
+    } else {
+        currentIndex = (currentIndex + 1) % tracks.length
+    }
+    loadTrack(currentIndex)
+    if(isPlaying) {
+        audio.play()
+    }
+})
+
+shuffleBtn.addEventListener('click', () => {
+    isShuffle = !isShuffle
+    if(isShuffle) {
+        shuffleBtn.style.background = 'rgb(115, 232, 255)'
+    } else {
+        shuffleBtn.style.background = '#333'
+    }
+})
+
+progressEl.addEventListener('input', () => {
+    const seekTime = 
+    (progressEl.value / 100) * audio.duration;
+    audio.currentTime = seekTime
+})
+
+audio.addEventListener('timeupdate', () => {
+    const percent = 
+    (audio.currentTime / audio.duration) * 100
+    progressEl.value = percent || 0;
+})
