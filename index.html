@@ -8,7 +8,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- контейнер, чтобы был плеер не на весь экран -->
+    <div class="container">
+        <!-- Плеер -->
+        <div class="player">
+            <!-- Оболожка трека -->
+            <div class="cover" id="cover"></div>
+            <!-- Заголовок (название) трека -->
+            <h2 id="title">С новым годом!</h2>
+            <!-- таймлайн трека -->
+            <input type="range" id="progress" value="0">
+            <!-- Обертка для эл. управления -->
+            <div class="controls">
+                <buttton id="shuffle">🔀</buttton>
+                <buttton id="prev">⏪️</buttton>
+                <buttton id="play">▶️</buttton>
+                <buttton id="next">⏩️</buttton>
+                <buttton id="repeat">🔁</buttton>
+            </div>
+        </div>
 
+        <div class="track-list">
+            <div class="track-item active">
+                Дискотека авария
+            </div>
+            <div class="track-item">
+                Нюша
+            </div>
+            <div class="track-item">
+                Руки Вверх
+            </div>
+            <div class="track-item">
+                Стекловата
+            </div>
+        </div>
+    </div>
     <!-- Подключение скриптов -->
     <script src="script.js"></script>
 </body>
