@@ -35,7 +35,7 @@ function createTrackList() {
             if(isPlaying) {
                 audio.play()
             }
-        });
+      });
         /* вставляем элементы списка по очереди в .track-list */
         trackList.appendChild(item);
     });
@@ -45,12 +45,62 @@ function createTrackList() {
 const audio = new Audio();
 /* Текущий трек, по умолчанию первый */
 let currentIndex = 0;
+/* Название трека */
+const titleEl = document.getElementById('title')
+/* Обложка трека */
+const coverEl = document.getElementById('cover')
+/* Таймлайн трека */
+const progressEl = document.getElementById('progress')
+/* Кнопка плей */
+const playBtn = document.getElementById('play')
+/* Кнопка предыдущий трек */
+const prevBtn = document.getElementById('prev')
+/* Кнопка следущий трек */
+const nextBtn = document.getElementById('next')
+/* Кнопка в перемешку */
+const shuffleBtn = document.getElementById('shuffle')
+/* Кнопка повтор треков */
+const repeatBtn = document.getElementById('repeat')
+const isPlaying = false
 
 function loadTrack(index) {
+    /* Получили нужный трек */
+    const track = tracks[index];
+    /* Получили его название и положили в заголовок */
+    titleEl.textContent = track.title
+
+    audio.src = `audio/${track.file}`
+    audio.load();
+
+    const imgPath = 
+    `images/${track.file.replace("mp3", "jpeg")}`
+    const img = new Image();
+    img.onload = () => {
+        coverEl.style.backgroundImage = `url(${imgPath})`;
+        coverEl.style.backgroundSize = "cover";
+    }
+    img.onerror = () => {
+        coverEl.style.background = 
+        'linear-gradient(45deg, orange, purple)';
+        coverEl.style.backgroundSize = 
+        "400% 400%";
+        coverEl.style.animation = 
+        "gradient 8s ease infinite";
+    }
+    img.src = imgPath
+
 }
 
 function updateActiveTrack() {
-
+    document.querySelectorAll('.track-item')
+    .forEach((item, index) => {
+        if(index === currentIndex) {
+            item.classList.add('active')
+        } else {
+            item.classList.remove('active')
+        }
+    })
 }
 
 createTrackList()
+loadTrack(currentIndex)

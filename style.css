@@ -21,7 +21,7 @@ body {
 }
 
 .player {
-   min-width: 350px;
+   max-width: 350px;
    text-align: center;
    padding: 20px;
    background: #222;
@@ -47,6 +47,9 @@ body {
 h2 {
    margin: 10px 0;
    font-size: 24px;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   overflow: hidden;
 }
 #progress {
    width: 100%;
