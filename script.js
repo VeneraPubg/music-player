@@ -184,3 +184,10 @@ repeatBtn.addEventListener('click', () => {
         repeatBtn.textContent = '🔁'
     }
 })
+
+function loadVolume() {
+    const savedVolume = 
+    localStorage.getItem("playerVolume");
+    const volume = savedVolume ? parseFloat(savedVolume) : 1
+
+}

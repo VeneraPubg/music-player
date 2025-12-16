@@ -111,3 +111,13 @@ h2 {
       max-height: 200px;
    }
 }
+
+.volume-control {
+   text-align: left;
+   margin: 15px 0;
+}
+
+#volume {
+   accent-color: purple;
+   cursor: pointer;
+}
