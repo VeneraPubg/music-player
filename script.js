@@ -185,9 +185,56 @@ repeatBtn.addEventListener('click', () => {
     }
 })
 
+const volumeEL = document.getElementById('volume')
+
 function loadVolume() {
     const savedVolume = 
     localStorage.getItem("playerVolume");
-    const volume = savedVolume ? parseFloat(savedVolume) : 1
 
+    if(savedVolume) {
+        const volume = parseFloat(savedVolume)
+    } else {
+        const volume = 1
+    }
+
+    audio.volume = volume
+    volumeEL.value = volume
+    updateVolumeIcon(volume)
 }
+
+const volumeIcon = document.getElementById('volumeIcon')
+
+function updateVolumeIcon(volume) {
+    if(volume === 0 || volume < 0.02) {
+        volumeIcon.textContent = "🔈"
+    } else if(volume < 0.5) {
+        volumeIcon.textContent = "🔉"
+    } else {
+        volumeIcon.textContent = "🔊" 
+    }
+}
+
+volumeEL.addEventListener('input', () => {
+    const volume = volumeEL.value;
+    audio.volume = volume;
+    updateVolumeIcon(volume);
+
+    localStorage.setItem("playerVolume", volume)
+})
+
+volumeIcon.addEventListener('click', () => {
+    if (audio.volume > 0) {
+        localStorage.setItem("playerVolumeBeforeMute", audio.volume)
+        audio.volume = 0;
+        volumeEL.value = 0;
+        volumeIcon.textContent = "🔈"
+    } else {
+        const prevVolume = 
+        localStorage.getItem("playerVolumeBeforeMute") || "0.8";
+        audio.volume = parseFloat(prevVolume);
+        volumeEL.value = parseFloat(prevVolume);
+        updateVolumeIcon(parseFloat(prevVolume))
+    }
+})
+
+loadVolume()

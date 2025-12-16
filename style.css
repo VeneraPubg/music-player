@@ -121,3 +121,11 @@ h2 {
    accent-color: purple;
    cursor: pointer;
 }
+
+#volumeIcon {
+   display: inline-block;
+   cursor: pointer;
+   font-size: 20px;
+   width: 24px;
+   margin-right: 6px;
+}
