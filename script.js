@@ -118,6 +118,8 @@ playBtn.addEventListener('click', () => {
         audio.play();
         playBtn.textContent = "⏸️"
     }
+    document.querySelector('.player')
+    .classList.toggle('playing')
     isPlaying = !isPlaying;
 })
 
