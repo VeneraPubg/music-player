@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MyPlayer</string>
+    <string name="title_activity_main">MyPlayer</string>
+    <string name="package_name">com.example.myplayer</string>
+    <string name="custom_url_scheme">com.example.myplayer</string>
+</resources>

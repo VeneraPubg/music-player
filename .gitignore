@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.vite/
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/capacitor-cordova-android-plugins/
+android/local.properties
+android/app/src/main/assets/public/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Логи
+*.log
+
+# Временные скрипты
+add-perms.mjs
+patch-root-gradle.mjs
+patch-variables.mjs
